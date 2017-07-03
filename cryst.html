@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div>Target : <span id="targett"></span></div>
+<div id="crystal"></div>
+<div>Score : <span id="score"></span></div>
+<div id="banner"></div>
+<div>Won : <span id="won"></span></div>
+<div>Lost : <span id="lost"></span></div>
+
+<script type="text/javascript">
+  var win=0;
+  var lose=0;
+  var scor=0;
+  $("#score").text(scor);
+  $("#banner").text("");
+  $("#won").text(win);
+    $("#lost").text(lose);
+    $("#score").text(scor);
+
+  var min = 50;
+    var max = 100;
+    var target = Math.floor(Math.random() * (max - min + 1)) + min;
+    $("#targett").text(target);
+
+    var minn=1;
+    var maxx=30;
+    var pictures=["c1", "c2", "c3", "c4"];
+    for (var i = 0; i < pictures.length; i++) {
+      var image=$("<img>");
+      image.attr("src", pictures[i]+".jpg");
+      image.attr("value", Math.floor(Math.random() * (maxx - minn + 1)) + minn);
+      image.addClass("cryst");
+      $("#crystal").append(image);
+    }
+
+$(".cryst").on("click", function() {
+    var crystValue = ($(this).attr("value"));
+    crystValue = parseInt(crystValue);
+    scor += crystValue;
+    $("#score").text(scor);
+    if (scor == target) {
+      $("#banner").text("You win!!!");
+      win++;
+      $("#won").text(win);
+      scor=0;
+      $("#score").text(scor);
+      target = Math.floor(Math.random() * (max - min + 1)) + min;
+      $("#targett").text(target);
+    }
+    else if (scor >= target) {
+      $("#banner").text("You lose!!!");
+      lose++;
+      $("#lost").text(lose);
+      scor=0;
+      $("#score").text(scor);
+      target = Math.floor(Math.random() * (max - min + 1)) + min;
+      $("#targett").text(target);
+    }
+  });
+    
+</script>
+</body>
+</html>
