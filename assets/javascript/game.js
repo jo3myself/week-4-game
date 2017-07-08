@@ -23,7 +23,7 @@ var characters = [
     health: 100,
     attack: 10,
     counter: 10,
-    imageUrl: "assets/images/r1.jpg",
+    image: "assets/images/r1.jpg",
   },
 
   c3po = {
@@ -31,7 +31,7 @@ var characters = [
     health: 150,
     attack: 15,
     counter: 15,
-    imageUrl: "assets/images/r2.jpg",
+    image: "assets/images/r2.jpg",
   },
 
   bb8 = {
@@ -39,7 +39,7 @@ var characters = [
     health: 200,
     attack: 20,
     counter: 20,
-    imageUrl: "assets/images/r3.jpg",
+    image: "assets/images/r3.jpg",
   },
 
   chopper = {
@@ -47,14 +47,14 @@ var characters = [
     health: 250,
     attack: 25,
     counter: 25,
-    imageUrl: "assets/images/r4.jpg",
+    image: "assets/images/r4.jpg",
   }
 ];
     
     for (let i = 0; i < characters.length; i++) {
     var charDiv = $("<span class='image availChar' id='" + characters[i].name + "'>");
     var charName = $("<p>").text(characters[i].name);
-    var charImage = $("<img>").attr("src", characters[i].imageUrl);
+    var charImage = $("<img>").attr("src", characters[i].image);
     var charHealth = $("<p class='health'>").text(characters[i].health);
     charDiv.attr("name", characters[i].name);
     charDiv.attr("health", characters[i].health);
