@@ -1,16 +1,5 @@
-var character={
-  name:"a",
-  health: 0,
-  attack: 0,
-  counter: 0
-  }
-var defender={
-  name:"b",
-  health: 0,
-  attack: 0,
-  counter: 0
-  }
-
+var character={}
+var defender={}
 var charSelect = false;
 var defSelect = false;
 var defeat = 0;
@@ -87,7 +76,6 @@ function reset() {
   defSelect = false;
   defeat = 0;
   end = false;
-
   character = {};
   defender = {};
 }
@@ -98,12 +86,6 @@ $(document).ready(function() {
   $("#restart").hide();
 
   $(".robot").on("click", function() {
-    var healthr = ($(this).attr("health"));
-    healthr = parseInt(healthr);
-    var attackr = ($(this).attr("attack"));
-    attackr = parseInt(attackr);
-    var counterr = ($(this).attr("counter"));
-    counterr = parseInt(counterr);
     robotName = ($(this).attr("name"));
     if(charSelect == false) {
       $("#message").empty();
@@ -113,20 +95,20 @@ $(document).ready(function() {
       $("#"+robotName+'').removeClass("availChar").addClass("choose");
       $("#choose").append(this);
       console.log(robotName);
-      character.name= robotName;
-      character.health=healthr;
-      character.attack=attackr;
-      character.counter=counterr;
+      character.name= ($(this).attr("name"));
+      character.health=parseInt($(this).attr("health"));
+      character.attack=parseInt($(this).attr("attack"));
+      character.counter=parseInt($(this).attr("counter"));
       becomeEnemy();
     } else if ((charSelect == true) && (defSelect == false)) {
       if($("#"+robotName+'').hasClass("enemyChar")) {
         $("#message").empty();
  
         console.log(robotName);
-        defender.name= robotName;
-        defender.health=healthr;
-        defender.attack=attackr;
-        defender.counter=counterr;
+        defender.name= ($(this).attr("name"));
+        defender.health=parseInt($(this).attr("health"));
+        defender.attack=parseInt($(this).attr("attack"));
+        defender.counter=parseInt($(this).attr("counter"));
         defSelect = true;
         $("#"+robotName+'').removeClass("enemyChar").addClass("defChar");
         $("#defenderSec").append(this);
@@ -135,7 +117,6 @@ $(document).ready(function() {
 
     });
 
-
   $("#attack").on("click", function() {
     
     if (charSelect && defSelect && !end) {
@@ -143,7 +124,6 @@ $(document).ready(function() {
       defender.health = defender.health - character.attack;
       $(".defChar").children(".health").html(defender.health);
       $("#message").html("<p>You attacked " + defender.name + " for " + character.attack + " damage.<p>");
-
       character.attack = character.attack + character.counter;
 
       if (defender.health > 0) {
@@ -179,8 +159,6 @@ $(document).ready(function() {
   });
 
   $("#restart").on("click", function() {
-    console.log("Restart selected");
-
     reset();
   });
 
